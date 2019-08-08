@@ -14,7 +14,7 @@ $page_file_name= $page_file_name;
 
 if(!is_bot()){
 header("HTTP/1.1 301 Moved Permanently"); 
-header("Location: https://dotune.book-index.ru/download/".urlencode($page_title));
+header("Location: https://h.b00kmedia.ru/download/".urlencode($page_title));
 exit();
 }
 
@@ -32,7 +32,7 @@ $array_bing= rss_curl($this_title);
 	exit('Database Bussy');
 	}
 
-$http_home_domain= 'http://'.$_SERVER['SERVER_NAME'];
+$http_home_domain= 'https://'.$_SERVER['SERVER_NAME'];
 	
 foreach($array_bing as $bing_array){
 		$lower_title= $bing_array['title'];
@@ -68,7 +68,7 @@ $prefix_title= '';
 
 <?php
 $ini_r_key= random_keyword();
-$ini_r_key=array_slice($ini_r_key, 0, 50);
+$ini_r_key=array_slice($ini_r_key, 0, 5);
 
 echo '<aside><ul>';
 foreach($ini_r_key as $items){
