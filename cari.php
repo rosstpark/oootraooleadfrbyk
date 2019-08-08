@@ -16,7 +16,7 @@ $items= trim($items);
 $slugsq= trim(str_replace('/', '-', $items),'-');
 $slugsq= trim(str_replace(' ', '-', $slugsq),'-');
 $pathsq= substr(md5($slugsq),0,5);
-$content .= '<a href="http://'.$_SERVER['SERVER_NAME'].'/search/books/'.$slugsq.'">http://'.$_SERVER['SERVER_NAME'].'/search/books/'.$slugsq.'</a> <br> ';
+$content .= '<a href="https://'.$_SERVER['SERVER_NAME'].'/search/books/'.$slugsq.'">https://'.$_SERVER['SERVER_NAME'].'/search/books/'.$slugsq.'</a> <br> ';
 }
 return $content;
 }
