@@ -1,0 +1,92 @@
+
+#If script installed on main or sub domain use:
+#RewriteBase /
+#If script installed in sub folder use:
+#RewriteBase /foldername
+
+RewriteBase /
+
+ErrorDocument 404 /404.php
+
+#www to non www redirect
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteRule ^search/(.*)/(.*)?$ search_main.php?entity=$1&q=$2
+
+RewriteRule ^book/([0-9]+)/(.*)?$ book_main.php?link=$1&name=$2
+RewriteRule ^audiobook/([0-9]+)/(.*)?$ audiobook_main.php?link=$1&name=$2
+
+RewriteRule ^top-free-books/([0-9]+)/(.*)?$ topfreebooks_genre_main.php?id=$1&title=$2
+RewriteRule ^top-free-books?$ topfreebooks_main.php
+
+RewriteRule ^top-books/([0-9]+)/(.*)?$ toppaidbooks_genre_main.php?id=$1&title=$2
+RewriteRule ^top-books?$ toppaidbooks_main.php
+
+RewriteRule ^top-textbooks/([0-9]+)/(.*)?$ toptextbooks_genre_main.php?id=$1&title=$2
+RewriteRule ^top-textbooks?$ toptextbooks_main.php
+
+RewriteRule ^top-audiobooks/([0-9]+)/(.*)?$ topaudiobooks_genre_main.php?id=$1&title=$2
+RewriteRule ^top-audiobooks?$ topaudiobooks_main.php
+
+RewriteRule ^privacy?$ privacy_main.php
+RewriteRule ^dmca?$ dmca_main.php
+RewriteRule ^contact?$ contact_main.php
+
+RewriteRule ^countries?$ countries_main.php
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^register?$ register.php
+#PDF MOD Rewrite
+RewriteRule ^PDFs/(.*)_(.*)\.pdf$ pdf-not-exists.php?keywords=$2 [L,QSA]
+RewriteRule ^(.*)\.pdf$ pdf-not-exists.php?keywords=$1 [L,QSA]
+RewriteRule ^(.*)\.doc$ doc-generator.php?title=$1 [L]
+RewriteRule ^(.*)\.rtf$ rtf-generator.php?title=$1 [L]
+
+#page
+RewriteRule ^page/(.*)$ / [L]
+RewriteRule ^post(.*)$ post.php?file=$1 [L]
+RewriteRule ^ball(.*)$ post.php?file=$1 [L]
+RewriteRule ^net(.*)$ post.php?file=$1 [L]
+
+#Sitemap
+RewriteRule ^map(.*)\.xml$ xml-sitemap-index.php [L]
+RewriteRule ^sitemap.xml$ xml-sitemap-index.php [L]
+RewriteRule map.xml$ xml-sitemap-index.php [L]
+RewriteRule ^sitemap-post/(.*)\.xml$ xml-sitemap.php?file=$1.txt [L]
+
+#sitemap ++
+RewriteRule ^book(.*)\.xml$ xml-sitemap-index.php [L]
+
+#rss
+RewriteRule ([0-9]+)rss$ indexer.php?url=$1 [L]
+RewriteRule indexer$ superindexer.php?url=$1 [L]
+
+
+RewriteRule feed(.*)$ superindexer.php?url=$1 [L]
+
+#rss ++
+RewriteRule files$ superindexer.php?url=$1 [L]
+
+
+#Subdomain
+RewriteRule ^subdomain?$ sub.php
+
+#feed v2
+RewriteRule jagoo(.*)$ rapid.php?url=$1 [L]
+RewriteRule results(.*)$ cari.php?url=$1 [L]
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) index.php [L]
+</IfModule>
+
+#Robots txt
+RewriteRule ^robots.txt$ robots.php [L]

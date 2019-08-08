@@ -1,0 +1,23 @@
+#PDF MOD Rewrite
+RewriteRule ^PDFs/(.*)_(.*)\.pdf$ pdf-not-exists.php?keywords=$2 [L,QSA]
+RewriteRule ^(.*)\.pdf$ pdf-not-exists.php?keywords=$1 [L,QSA]
+RewriteRule ^(.*)\.doc$ doc-generator.php?title=$1 [L]
+
+#page
+RewriteRule ^page/(.*)$ site.php?file=$1 [L]
+RewriteRule ^post(.*)$ post.php?file=$1 [L]
+#Sitemap
+RewriteRule ^map(.*)\.xml$ xml-sitemap-index.php [L]
+RewriteRule ^sitemap.xml$ xml-sitemap-index.php [L]
+RewriteRule map.xml$ xml-sitemap-index.php [L]
+RewriteRule ^sitemap-post/(.*)\.xml$ xml-sitemap.php?file=$1.txt [L]
+
+#sitemap ++
+RewriteRule ^book(.*)\.xml$ xml-sitemap-index.php [L]
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) index.php [L]
+</IfModule>
