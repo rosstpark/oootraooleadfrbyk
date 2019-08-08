@@ -147,9 +147,8 @@
             <span class="sorry-text">SORRY!</span>
 
             <section class="contact-info">
-                If you are the owner of this website, please contact your hosting provider:
-                <a href="mailto:webmaster@<?php echo $_SERVER['SERVER_NAME'].$page_title ?>" target="_blank" rel="noopener noreferrer" title="Click this link to contact the host" id="dynamicProviderLink">
-                    webmaster@<?php echo $_SERVER['SERVER_NAME'].$page_title ?>           </a>
+                If you are the owner of this website, please contact your hosting provider
+ </a>
             </section> 
 
             <p class="reason-text">It is possible you have reached this page because: </p>
